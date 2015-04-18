@@ -1,0 +1,7 @@
+instalaciones
+-------------
+
+intalar mongodb
+npm intall
+
+
