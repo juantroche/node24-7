@@ -5,3 +5,13 @@ intalar mongodb
 npm intall
 
 
+Modificar:
+config\env\development.js
+
+db: {
+		uri: 'mongodb://{PUERTO MONGODB}/DB247',
+		options: {
+			user: '',
+			pass: ''
+		}
+	},
