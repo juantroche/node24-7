@@ -1,0 +1,69 @@
+<section data-ng-controller="roleController" data-ng-init="findOne()">
+
+
+<div  class="col-md-12" ng-controller="RolesController">
+<legend> <label for="title">Roles</label> </legend>
+<div class="row">
+<div class="col-md-12" ng-show="filteredItems > 0">
+    <div class="row">
+    <div class="col-md-2">tamaño de pagina:
+        <select ng-model="entryLimit" class="form-control">
+            <option>5</option>
+            <option>10</option>
+            <option>20</option>
+            <option>50</option>
+            <option>100</option>
+        </select>
+    </div>
+    <div class="col-md-3">Busqueda:
+        <input ng-model = "query" placeholder="buscar" autofocus>
+    </div>
+    <div class="col-md-4">
+            <h5>lista {{ filtered.length }} de {{ totalItems}} total personas</h5>
+        </div>
+    </div>
+    <br/>
+    <nav class= "navbar navbar-default" role= "navigation" >
+        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#registro">
+           <i class="glyphicon glyphicon-plus-sign"></i> Nuevo Rol
+        </a>
+    </nav>
+        <table class="table table-striped table-bordered">
+        <thead>
+        <th>OPCION&nbsp;</th>
+        <th>ID&nbsp;</th>
+        <th>Rol&nbsp;</th>
+        <th>Registrado&nbsp;</th>
+        <th>Modificado&nbsp;</th>
+        <th>Estado&nbsp;</th>
+        </thead>
+        <tbody>
+            
+           <!-- <tr ng-repeat="persona in filtered = (personas | filter:search | orderBy : predicate :reverse) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">-->
+           <tr ng-repeat="rol in roles | filter:query">
+                <td><a href="#" ng-click="obtAnimal(rol.rol)" class="btn btn-primary" data-toggle="modal" data-target="#"></a>
+                    <a href="#" onclick="" class="glyphicon glyphicon-trash" ></a> </td>
+                <td>{{rol.rls_id}}</td>
+                <td>{{rol.rls_rol}}</td>
+                <td>{{rol.rls_registrado}}</td>
+                <td>{{rol.rls_modificado}}</td>
+                <td>{{rol.rls_estado}}</td>
+            </tr>
+        </tbody>
+        </table>
+    </div>
+    <div class="col-md-12" ng-show="filteredItems == 0">
+        <div class="col-md-12">
+            <h4>No existen registros</h4>
+        </div>
+    </div>
+    <div class="col-md-12" ng-show="filteredItems > 0">
+        <div pagination="" page="currentPage" on-select-page="setPage(page)" boundary-links="true" total-items="filteredItems" items-per-page="entryLimit" class="pagination-small" previous-text="&laquo;" next-text="&raquo;"></div>
+ 
+ 
+    </div>
+</div>
+</div>
+
+
+</section>
