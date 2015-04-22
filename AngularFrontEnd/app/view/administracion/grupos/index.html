@@ -1,14 +1,9 @@
-
-
-
-
-<div class="col-md-12" ng-controller="gruposController">
-
+<div class="col-md-12" class="container" ng-controller="GruposController">
 <legend> <label for="title">Grupos</label> </legend>
 <div class="row">
+<div class="col-md-12">
 
-
-    <div class="row">
+  <div class="row">
     <div class="col-md-2">PageSize:
         <select ng-model="entryLimit" class="form-control">
             <option>5</option>
@@ -20,53 +15,45 @@
     </div>
     <div class="col-md-3">Buscar:
         <input ng-model = "query" class="form-control" placeholder="buscar" >
-    </div>
-   
-</div>
+    </div>  
+    <div class="col-md-4">
+            <h5>lista {{ totalItems }} de {{ totalItems}} total grupos</h5>
+    </div> 
+  </div>
     <br/>
 
     <nav class= "navbar navbar-default" role= "navigation" >
-        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#registro">
-           <i class="glyphicon glyphicon-plus-sign"    ></i> Nuevo Grupo
+        <a  class="btn btn-primary" data-toggle="modal" data-target="#registro">
+           <i class="glyphicon glyphicon-plus-sign"></i> Nuevo Grupo
         </a>
     </nav>
-    <div id="grilla">
-        <table class="table table-striped table-bordered" >
+        <table class="table table-hover table-striped table-bordered todolist" >
         <thead>
         <th>OPCIONES&nbsp;</th>
-        <th>ID&nbsp;</th>
         <th>GRUPO&nbsp;</th>
+        <th>IMAGEN&nbsp;</th>
+        <th>REGISTRADO&nbsp;</th>
+        <th>MODIFICADO&nbsp;</th>
+        <th>ESTADO&nbsp;</th>
         </thead>
         <tbody>
             
             <!--<tr ng-repeat="persona in personas | filter:search | orderBy : predicate :reverse) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">-->
-            <tr ng-repeat="data in customers  | filter:query ">
+            <tr ng-repeat="todo in Todos.record  | filter:query " >
                 <td><a href="#" ng-click="obtAnimal(persona.persona)" class="btn btn-primary" data-toggle="modal" data-target="#"></a>
                     <a href="#" onclick="" class="glyphicon glyphicon-trash" ></a> </td>
-                <td>{{data.grp_id}}</td>
-                <td>{{data.grp_grupo}}</td>
+               <td>{{todo.grp_grupo}}</td>
+               <td>{{todo.grp_imagen}}</td>
+               <td>{{todo.grp_registrado}}</td>
+                <td>{{todo.grp_modificado}}</td>
+                 <td>{{todo.grp_estado}}</td>
+
 
             </tr>
         </tbody>
         </table>
       </div>
-    <div class="col-md-12" ng-show="filteredItems == 0">
-        <div class="col-md-12">
-            <h4>No existen registros</h4>
-        </div>
-    </div>
-    <div class="col-md-12" ng-show="filteredItems > 0">
-        <div pagination="" page="currentPage" on-select-page="setPage(page)" boundary-links="true" total-items="filteredItems" items-per-page="entryLimit" class="pagination-small" previous-text="&laquo;" next-text="&raquo;"></div>
- 
- 
-    </div>
-</div>
-
-
-
-
-<!-- Bookmark form -->
-    <div class="modal fade" id="registro" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal fade" id="registro" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
@@ -80,7 +67,7 @@
                         <div class="input-group-addon">
                         <i class="glyphicon glyphicon-bookmark"></i>
                         </div>
-                        <input ng-model="grupos.grupo" id="nombre" class="form-control" type="text" placeholder="Ingrese grupo" onChange="conMayusculas(this)" requiredvalue="grupos.grupo">
+                        <input ng-model="todo.grp_grupo" id="nombre" class="form-control" type="text" placeholder="Ingrese grupo"  requiredvalue="todo.grp_grupo">
                 </div>
                 </div>
 
@@ -89,21 +76,27 @@
                       <div class="input-group-addon">
                         <i class="glyphicon glyphicon-bookmark"></i>
                         </div>
-                        <input ng-model="grupos.image" id="nombre" class="form-control" type="text" placeholder="Ingrese nombre" onChange="conMayusculas(this)" required value="grupos.image">
+                        <input ng-model="todo.grp_imagen" id="nombre" class="form-control" type="text" placeholder="Ingrese imagen"  required value="todo.grp_imagen">
                 </div>
                 </div>
                 
                
               </form>
+              <input ng-model="todo.grp_usr_id" ng-init="todo.grp_usr_id='1'" hidden id="GRUPO" name="GRUPO" type="text" value="1">
+              <input ng-model="todo.grp_registrado" ng-init="todo.grp_registrado='2015-04-21 09:16:58.757'" hidden id="GRUPO" name="GRUPO" type="text" value="1">
+              <input ng-model="todo.grp_modificado" ng-init="todo.grp_modificado='2015-04-21 09:16:58.757'" hidden id="GRUPO" name="GRUPO" type="text" value="1">
+
+
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-              <button ng-click="GuardarGrupos(grupos)" type="button" data-dismiss="modal" onclick="recargar();" id="guardar" class="btn btn-primary">Guardar</button>
+              <button ng-click="addItem(todo)" type="button" data-dismiss="modal" id="guardar" class="btn btn-primary">Guardar</button>
             </div>
           </div>
         </div>
       </div>
 
-
+  
+  <br />
 
 </div>
