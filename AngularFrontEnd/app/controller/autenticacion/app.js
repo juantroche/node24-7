@@ -2,6 +2,7 @@ var app = angular.module('myApp', ['ngResource','ngRoute', 'ngAnimate', 'toaster
 
 app.constant('CONFIG', {
     APIURL: "http://pdp6:85/backEnd/model/",
+    APIURL1: "http://pdp6:85/backEnd/model/",
     TYPE: "slim",
     HOMEPATH: "#/home"
 });
