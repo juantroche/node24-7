@@ -1,23 +1,25 @@
-var app = angular.module('myApp', ['ngRoute', 'ngAnimate', 'toaster']);
+var app = angular.module('myApp', ['ngResource','ngRoute', 'ngAnimate', 'toaster']);
 
 app.constant('CONFIG', {
     APIURL: "http://pdp6:85/backEnd/model/",
-    email: "ftapi",
-    password: "123",
+    TYPE: "slim",
     HOMEPATH: "#/home"
 });
-
-app.controller("NavCtrl",function($scope, $http, $rootScope, CONFIG, sessionService){    
-    var urlmenu = CONFIG.APIURL + 'administracion/opciones.php';  
-    $http.get(urlmenu + '/menu/' + sessionService.get('IDUSUARIO')).then(function (results) {        
+app.controller("NavCtrl",function($scope, $http, $rootScope, CONFIG, sessionService){ 
+    var urlmenu = CONFIG.APIURL + 'administracion/opciones.php';
+    //alert($rootScope.usuario);
+    //alert(sessionService.get('IDUSUARIO'));
+    $http.post(urlmenu + '/menu', { id_us : sessionService.get('IDUSUARIO')}).then(function (results) { 
         $scope.categories = results.data;
-		console.log('menu generado');
     });
 });
 
+
+
 app.config(['$routeProvider',
   function ($routeProvider) {
-        $default = '../autenticacion/index.html';       
+        $default = '../autenticacion/index.html';
+        //$ruta = '../administracion/usuarios.html';        
         $routeProvider.
         when('/login', {
             title: 'Login',
@@ -49,19 +51,37 @@ app.config(['$routeProvider',
                     templateUrl: 'partials/blank.html',
                     controller: PagesController
                 }) 
-            .otherwise({              
+            .otherwise({                
+                //redirectTo: '/login'
                 templateUrl: $default
             });
   }])
-    .run(function ($rootScope, $location, Data, sessionService) {       
+    .run(function ($rootScope, $location, Data, sessionService,CONFIG) {
         $rootScope.$on("$routeChangeStart", function (event, next, current) {
             $rootScope.authenticated = false;
             $rootScope.usuario = sessionService.get('IDUSUARIO');
             if ($rootScope.usuario) {
                 $rootScope.nombre = sessionService.get('USUARIO');
             } else {
-                $location.path("");
-            }           
+                if(next.originalPath != "/signup"){
+                    $location.path("");
+                }                
+            }
+            /*Data.get('session').then(function (results) {
+                if (results.uid) {
+                    $rootScope.authenticated = true;
+                    $rootScope.uid = results.uid;
+                    $rootScope.name = results.name;
+                    $rootScope.email = results.email;
+                } else {
+                    var nextUrl = next.$$route.originalPath;
+                    if (nextUrl == '/signup' || nextUrl == '/login') {
+
+                    } else {
+                        //$location.path("/login");
+                    }
+                }
+            });*/
         });
     });
 	

@@ -20,6 +20,7 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
         });        
     };
     $scope.signup = {usuario:'',clave:'',name:'',phone:'',address:''};
+    //$scope.signup = function(){ alert("OK");};
     $scope.signUp = function (customer) {
         Data.post('signUp', {
             customer: customer
