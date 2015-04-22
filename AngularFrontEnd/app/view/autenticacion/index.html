@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+    <meta content="width=device-width, initial-scale=1" name="viewport"></meta>
+    
+     <title>Angular js ... </title>
+    <!--<link href="../../libs/csss/bootstrap.min.css" rel="stylesheet">-->
+    <link href="../../libs/csss/megamenu.css" rel="stylesheet">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    
+    <!-- Bootstrap -->
+    <!--<link href="../../libs/csss/bootstrap.min.css" rel="stylesheet"/>-->
+    <link href="../../libs/csss/custom.css" rel="stylesheet"/>
+    <link href="../../libs/csss/toaster.css" rel="stylesheet"/>
+  </head>
+
+  <body ng-cloak="">
+    <div  ng-if='usuario && nombre'>        
+      <div class="navbar navbar-fixed-top navbar-default megamenu" >
+      <nav class="navbar navbar-default">
+      <div class="container-fluid" >
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Ini</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">*</a>
+          </div>
+          <div class="navbar-collapse collapse"  id="bs-example-navbar-collapse-1" ng-controller="NavCtrl">
+            <ul class="nav navbar-nav">
+              <li class="active">
+                <a href="">INICIO <span class="sr-only">(current)</span></a>
+              </li>
+            <li ng-repeat ="p in categories" class="dropdown">
+            <a href="" data-toggle="dropdown" class="dropdown-toggle">{{p.grupo}}
+            <span class="caret"></span></a>
+              <ul class="dropdown-menu"  role="menu">
+              <li ng-repeat="c in p.sub_categories">
+                  <a href="#{{c.contenido}}">{{c.opcion}}</a>
+              </li>
+              </ul>
+            </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><br>USUARIO: {{nombre}}</li>                            
+              <li><a ng-controller="authCtrl" ng-click="logout();" >SALIR</a></li>
+            </ul>
+          </div>
+        </div>
+        </nav>
+      </div>
+    </div>
+     <foter class="footer">
+          <div >
+          <div class="col-md-12" >
+            <div style="margin-top:20px;">
+              <div data-ng-view="" id="ng-view" ></div>
+            </div>
+            </div> 
+          </div>
+        </foter>
+    </body>
+  <!-- Libs -->
+  <script src="../../libs/jss/angular.min.js"></script>
+  <script src="../../libs/jss/angular-route.min.js"></script>
+  <script src="../../libs/jss/angular-animate.min.js" ></script>
+  <script src="../../libs/jss/toaster.js"></script>
+  <script src="../../libs/jss/jquery-1.11.2.min.js"></script>
+ <!--  nuevas librearias adicionales-->
+
+<link rel="stylesheet" href="../../libs/components/bootstrap/dist/css/bootstrap.min.css" />
+    <!-- endbower -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="../../libs/styles/main.css">
+    <link rel="stylesheet" href="../../libs/styles/sb-admin-2.css">
+    <link rel="stylesheet" href="../../libs/styles/timeline.css">
+    <link rel="stylesheet" href="../../libs/components/metisMenu/dist/metisMenu.min.css">
+    <link rel="stylesheet" href="../../libs/components/angular-loading-bar/build/loading-bar.min.css">
+    <link rel="stylesheet" href="../../libs/components/font-awesome/css/font-awesome.min.css" type="text/css">
+    <!-- endbuild -->
+    
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="../../libs/components/jquery/dist/jquery.min.js"></script>
+    <script src="../../libs/components/angular/angular.min.js"></script>
+    <script src="../../libs/components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../../libs/components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="../../libs/components/json3/lib/json3.min.js"></script>
+    <script src="../../libs/components/oclazyload/dist/ocLazyLoad.min.js"></script>
+    <script src="../../libs/components/angular-loading-bar/build/loading-bar.min.js"></script>
+    <script src="../../libs/components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="../../libs/components/metisMenu/dist/metisMenu.min.js"></script>
+    <!-- endbower -->
+
+  <script src="../../libs/bower-angular-resource-master/angular-resource.js"></script>
+
+  <!-- app -->
+  <script src="../../controller/autenticacion/app.js"></script>
+  <script src="../../controller/autenticacion/data.js"></script>
+  <script src="../../controller/autenticacion/directives.js"></script>
+  <script src="../../controller/autenticacion/authCtrl.js"></script>
+  <script src="../../controller/autenticacion/sessionService.js"></script>
+  <!--controladores-->
+  <script src="../../controller/administracion/grupos/appGrupos.js"></script>
+  <script src="../../controller/administracion/accesos/appAccesos.js"></script>
+  <script src="../../controller/administracion/opciones/appOpciones.js"></script>
+  <script src="../../controller/administracion/estadosciviles/appEstadosciviles.js"></script>
+  <script src="../../controller/administracion/usuarios/appUsuarios.js"></script>
+  <script src="../../controller/administracion/personas/appPersonas.js"></script>
+  <script src="../../controller/administracion/roles/appRoles.js"></script>
+  <script src="../../controller/administracion/usuariosRoles/appUsuariosRoles.js"></script>
+
+
+</html>
+

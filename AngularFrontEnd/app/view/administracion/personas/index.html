@@ -1,0 +1,77 @@
+<div class="col-md-12" class="container" ng-controller="PersonasController">
+<legend> <label for="title">Personas</label> </legend>
+<div class="row">
+<div class="col-md-12" ng-show="filteredItems > 0">
+
+    <div class="row">
+    <div class="col-md-2">tamaño de pagina:
+        <select ng-model="entryLimit" class="form-control">
+            <option>5</option>
+            <option>10</option>
+            <option>20</option>
+            <option>50</option>
+            <option>100</option>
+        </select>
+    </div>
+    <div class="col-md-3">Busqueda:
+        <input ng-model = "query" placeholder="buscar" autofocus>
+    </div>
+    <div class="col-md-4">
+            <h5>lista {{ totalItems }} de {{ totalItems}} total personas</h5>
+        </div>
+    </div>
+    <br/>
+
+    <nav class= "navbar navbar-default" role= "navigation" >
+        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#registro">
+           <i class="glyphicon glyphicon-plus-sign"></i> Nueva Persona
+        </a>
+    </nav>
+        <table class="table table-striped table-bordered">
+        <thead>
+        <th>OPCION&nbsp;</th>
+        <th>ID&nbsp;</th>
+        <th>Estado Civil&nbsp;</th>
+        <th>C.I.&nbsp;</th>
+        <th>Nombre Completo&nbsp;</th>
+        <th>Direccion&nbsp;</th>
+        <th>Telefono&nbsp;</th>
+        <th>Celular&nbsp;</th>
+        <th>Correo&nbsp;</th>
+        <th>Sexo&nbsp;</th>
+        <th>Fecha Nac.&nbsp;</th>
+        </thead>
+        <tbody>
+            
+            <!--<tr ng-repeat="persona in personas | filter:search | orderBy : predicate :reverse) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">-->
+            <tr ng-repeat="persona in personas | filter:query ">
+                <td><a href="#" ng-click="obtAnimal(persona.persona)" class="btn btn-primary" data-toggle="modal" data-target="#"></a>
+                    <a href="#" onclick="" class="glyphicon glyphicon-trash" ></a> </td>
+                <td>{{persona.prs_id}}</td>
+                <td>{{persona.estcivil}}</td>
+                <td>{{persona.prs_ci}}</td>
+                <td>{{persona.persona}}</td>
+                <td>{{persona.prs_direccion}}</td>
+                <td>{{persona.prs_telefono}}</td>
+                <td>{{persona.prs_celular}}</td>
+                <td>{{persona.prs_correo}}</td>
+                <td>{{persona.prs_sexo}}</td>
+                <td>{{persona.prs_fec_nacimiento}}</td>
+            </tr>
+        </tbody>
+        </table>
+    </div>
+    <div class="col-md-12" ng-show="filteredItems == 0">
+        <div class="col-md-12">
+            <h4>No existen registros</h4>
+        </div>
+    </div>
+    <div class="col-md-12" ng-show="filteredItems > 0">
+        <div pagination="" page="currentPage" on-select-page="setPage(page)" boundary-links="true" total-items="filteredItems" items-per-page="entryLimit" class="pagination-small" previous-text="&laquo;" next-text="&raquo;"></div>
+ 
+ 
+    </div>
+</div>
+</div>
+
+
